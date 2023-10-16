@@ -38,6 +38,10 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <span class="navbar-brand">Navbar</span>
+        <button>
+          <span class="badge bg-dark">Dark 🔄</span>
+        </button>
+
         <button class="navbar-toggler" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -54,6 +58,7 @@
 
     <button class="test-btn">버튼</button>
 
+    <!-- form js -->
     <script>
       $("#send").on("click", function (e) {
         if (document.getElementById("email").value == "") {
@@ -76,10 +81,13 @@
         }
       });
 
+      // show list
       document
-        .querySelector(".navbar-toggler")
+        .getElementsByClassName("navbar-toggler")[0]
         .addEventListener("click", function () {
-          document.querySelector(".list-group")[0].classList.toggle("show");
+          document
+            .getElementsByClassName("list-group")[0]
+            .classList.toggle("show");
         });
 
       $(".test-btn").on("click", function () {
@@ -88,6 +96,18 @@
 
       $(".btn-danger").on("click", function () {
         $(".black-bg").slideUp();
+      });
+
+      var count = 0;
+
+      $(".badge").on("click", function () {
+        count++;
+
+        if (count % 2 === 0) {
+          document.querySelector(".badge").innerHTML = "light 🔄";
+        } else {
+          document.querySelector(".badge").innerHTML = "Dark 🔄";
+        }
       });
     </script>
 
