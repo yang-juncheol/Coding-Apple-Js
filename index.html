@@ -18,7 +18,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
+  <body class="body-color" class="">
     <div class="black-bg">
       <div class="white-bg">
         <h4>로그인하세요</h4>
@@ -105,8 +105,10 @@
 
         if (count % 2 === 0) {
           document.querySelector(".badge").innerHTML = "light 🔄";
+          document.querySelector(".body-color").classList.remove("dark");
         } else {
           document.querySelector(".badge").innerHTML = "Dark 🔄";
+          document.querySelector(".body-color").classList.add("dark");
         }
       });
     </script>
