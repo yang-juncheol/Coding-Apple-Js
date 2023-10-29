@@ -56,7 +56,12 @@
       <li class="list-group-item">And a fifth one</li>
     </ul>
 
-    <button class="test-btn">버튼</button>
+    <div class="main-bg">
+      <h4>Shirts on Sale</h4>
+      <button class="test-btn">로그인</button>
+    </div>
+
+    <div class="alert alert-danger">5초 이내 구매시 사은품 증정</div>
 
     <!-- form js -->
     <script>
@@ -109,6 +114,11 @@
           document.querySelector(".badge").innerHTML = "Dark 🔄";
         }
       });
+
+      // setTimeOut
+      setTimeout(function () {
+        $(".alert").hide();
+      }, 5000);
     </script>
 
     <script
