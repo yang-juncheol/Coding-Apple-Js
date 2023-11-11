@@ -123,9 +123,23 @@
       });
 
       $("#send").on("click", function (e) {
+<<<<<<< Updated upstream
         var 비번 = document.getElementById("password").value;
         if (/[A-Z]/.test(비번) == false) {
           alert("대문자를 입력해주세요");
+=======
+        var 입력한값 = document.getElementById("email").value;
+        if (/\S+@\S+\.\S+/.test(입력한값)) {
+          alert("이메일형식아님");
+          e.preventDefault();
+        }
+      });
+
+      $("#send").on("click", function (e) {
+        var 비번 = document.getElementById("password").value;
+        if (/[A-Z]/.test(비번) == false) {
+          alert("대문자를 추가해주세요");
+>>>>>>> Stashed changes
           e.preventDefault();
         }
       });
