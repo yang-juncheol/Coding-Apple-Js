@@ -71,11 +71,39 @@
       <span id="num">5</span>초 이내 구매시 사은품 증정
     </div>
 
+    <div style="overflow: hidden">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="./img/car1.png" />
+        </div>
+        <div class="slide-box">
+          <img src="./img/car2.png" />
+        </div>
+        <div class="slide-box">
+          <img src="./img/car3.png" />
+        </div>
+      </div>
+    </div>
+
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+
     <!-- form js -->
     <script>
       $("#send").on("click", function (e) {
         if (document.getElementById("email").value == "") {
           alert("아이디를 입력해주세요");
+          e.preventDefault();
+        }
+      });
+
+      $("#send").on("click", function (e) {
+        var 입력한값 = document.getElementById("email").value;
+        // 정규 표현식을 사용하여 올바른 이메일 형식을 검증
+        var 이메일형식 = /\S+@\S+\.\S+/;
+        if (!이메일형식.test(입력한값)) {
+          alert("올바른 이메일 형식이 아닙니다.");
           e.preventDefault();
         }
       });
@@ -90,6 +118,14 @@
       $("#send").on("click", function (e) {
         if (document.getElementById("password").value.length < 6) {
           alert("비밀번호를 6자리 이상으로 입력해주세요");
+          e.preventDefault();
+        }
+      });
+
+      $("#send").on("click", function (e) {
+        var 비번 = document.getElementById("password").value;
+        if (/[A-Z]/.test(비번) == false) {
+          alert("대문자를 입력해주세요");
           e.preventDefault();
         }
       });
@@ -125,6 +161,7 @@
         }
       });
 
+      // setTimeOut
       setTimeout(function () {
         $(".alert").hide();
       }, 6000);
@@ -137,6 +174,19 @@
           document.querySelector("#num").innerHTML = count;
         }
       }, 1000);
+
+      // slide-container
+      $(".slide-2").on("click", function () {
+        $(".slide-container").css("transform", "translateX(-100vw)");
+      });
+
+      $(".slide-3").on("click", function () {
+        $(".slide-container").css("transform", "translateX(-200vw)");
+      });
+
+      $(".slide-1").on("click", function () {
+        $(".slide-container").css("transform", "translateX(0vw)");
+      });
     </script>
   </body>
 </html>
