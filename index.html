@@ -88,6 +88,16 @@
     <button class="slide-1">1</button>
     <button class="slide-2">2</button>
     <button class="slide-3">3</button>
+    <button class="next">다음</button>
+
+    <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam esse eaque
+      ipsa pariatur eius non similique voluptatibus. Laborum voluptas earum
+      deserunt voluptatem cum, fuga ex exercitationem hic voluptatibus qui
+      animi?
+    </div>
+
+    <div style="height: 1000px"></div>
 
     <!-- form js -->
     <script>
@@ -186,6 +196,42 @@
 
       $(".slide-1").on("click", function () {
         $(".slide-container").css("transform", "translateX(0vw)");
+      });
+
+      var 지금사진 = 0;
+
+      $(".next").on("click", function () {
+        지금사진++;
+
+        if (지금사진 > 3) {
+          지금사진 = 1;
+        }
+
+        if (지금사진 == 1) {
+          $(".slide-container").css("transform", "translateX(-100vw)");
+        } else if (지금사진 == 2) {
+          $(".slide-container").css("transform", "translateX(-200vw)");
+        } else if (지금사진 == 3) {
+          $(".slide-container").css("transform", "translateX(0vw)");
+        }
+      });
+
+      // navbar-scroll
+      $(window).on("scroll", function () {
+        if (window.scrollY > 100) {
+          $(".navbar-brand").css("font-size", "25px");
+        } else {
+          $(".navbar-brand").css("font-size", "20px");
+        }
+      });
+
+      // scroll-event
+      $(".lorem").on("scroll", function () {
+        var scroll_amount = document.querySelector(".lorem").scrollTop;
+        var div_height = document.querySelector(".lorem").scrollHeight;
+        if (scroll_amount + 100 == div_height) {
+          alert("약관을 다 읽으셨습니다");
+        }
       });
     </script>
   </body>
