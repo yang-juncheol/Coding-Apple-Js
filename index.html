@@ -110,7 +110,6 @@
 
       $("#send").on("click", function (e) {
         var 입력한값 = document.getElementById("email").value;
-        // 정규 표현식을 사용하여 올바른 이메일 형식을 검증
         var 이메일형식 = /\S+@\S+\.\S+/;
         if (!이메일형식.test(입력한값)) {
           alert("올바른 이메일 형식이 아닙니다.");
@@ -133,23 +132,9 @@
       });
 
       $("#send").on("click", function (e) {
-<<<<<<< Updated upstream
         var 비번 = document.getElementById("password").value;
         if (/[A-Z]/.test(비번) == false) {
           alert("대문자를 입력해주세요");
-=======
-        var 입력한값 = document.getElementById("email").value;
-        if (/\S+@\S+\.\S+/.test(입력한값)) {
-          alert("이메일형식아님");
-          e.preventDefault();
-        }
-      });
-
-      $("#send").on("click", function (e) {
-        var 비번 = document.getElementById("password").value;
-        if (/[A-Z]/.test(비번) == false) {
-          alert("대문자를 추가해주세요");
->>>>>>> Stashed changes
           e.preventDefault();
         }
       });
@@ -246,6 +231,10 @@
         if (scroll_amount + 100 == div_height) {
           alert("약관을 다 읽으셨습니다");
         }
+      });
+
+      $(".black-bg").on("click", function () {
+        $(".black-bg").css("display", "none");
       });
     </script>
   </body>
