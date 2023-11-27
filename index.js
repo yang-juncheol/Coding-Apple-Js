@@ -19,7 +19,7 @@ function tapOpen(tapOpenCount) {
   $(".tab-content").eq(tapOpenCount).addClass("show");
 }
 
-var car = { name: "소나타", price: 50000 };
+var car = { name: "소나타", price: [50000, 3000, 4000] };
 
-document.querySelectorAll("#name").innerText = car["name"];
-document.querySelectorAll("#price").innerText = car["price"];
+document.querySelector("#name").innerText = car["name"];
+document.querySelector("#price").innerText = car.price[0];
