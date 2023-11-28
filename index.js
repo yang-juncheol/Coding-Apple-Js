@@ -19,10 +19,14 @@ function tapOpen(tapOpenCount) {
   $(".tab-content").eq(tapOpenCount).addClass("show");
 }
 
+// Data Binding-test
 var car = { name: "소나타", price: [50000, 3000, 4000] };
 
 document.querySelectorAll("#name").innerText = car["name"];
 document.querySelectorAll("#price").innerText = car["price"];
+
+document.querySelector("#name").innerText = car["name"];
+document.querySelector("#price").innerText = car.price[0];
 
 // form-select-Event
 $(".form-select")
@@ -43,6 +47,3 @@ $(".form-select")
       $(".form-select").eq(1).addClass("form-hide");
     }
   });
-
-document.querySelector("#name").innerText = car["name"];
-document.querySelector("#price").innerText = car.price[0];
