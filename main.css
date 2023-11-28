@@ -54,3 +54,7 @@
 .navbar-bran {
   font-size: 20px;
 }
+
+.form-hide {
+  display: none;
+}
