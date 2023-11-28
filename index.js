@@ -23,3 +23,23 @@ var car = { name: "소나타", price: 50000 };
 
 document.querySelectorAll("#name").innerText = car["name"];
 document.querySelectorAll("#price").innerText = car["price"];
+
+// form-select-Event
+$(".form-select")
+  .eq(0)
+  .on("input", function () {
+    var value = $(".form-select").eq(0).val();
+    if (value == "셔츠") {
+      $(".form-select").eq(1).removeClass("form-hide");
+      console.log("weqwe");
+    }
+  });
+
+$(".form-select")
+  .eq(0)
+  .on("input", function () {
+    var value = $(".form-select").eq(0).val();
+    if (value == "모자") {
+      $(".form-select").eq(1).addClass("form-hide");
+    }
+  });
