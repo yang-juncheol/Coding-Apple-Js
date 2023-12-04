@@ -38,12 +38,12 @@ $(".form-select")
     }
   });
 
+var pants = [28, 30, 32];
+
 $(".form-select")
   .eq(0)
   .on("input", function () {
     var value = $(".form-select").eq(0).val();
-
-    // 첫 번째 이벤트 핸들러
     if (value == "셔츠") {
       $(".form-select").eq(1).removeClass("form-hide");
       $(".form-select").eq(1).html("");
@@ -51,8 +51,9 @@ $(".form-select")
     } else if (value == "바지") {
       $(".form-select").eq(1).removeClass("form-hide");
       $(".form-select").eq(1).html("");
-      var 템플릿 = `<option>28</option><option>30</option>`;
-      $(".form-select").eq(1).append(템플릿);
+      pants.forEach(function (a) {
+        $(".form-select").eq(1).append(`<option>${a}</option>`);
+      });
     } else if (value == "모자") {
       $(".form-select").eq(1).addClass("form-hide");
     }
