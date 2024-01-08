@@ -62,13 +62,14 @@
       </div>
     </div>
 
-    <script>
-      var products = [
-        { id: 0, price: 70000, title: "Blossom Dress" },
-        { id: 1, price: 50000, title: "Springfield Shirt" },
-        { id: 2, price: 60000, title: "Black Monastery" },
-      ];
+    <div aria-rowspan="4">
+      <button class="btn btn-danger" id="more">더보기</button>
+      <button class="btn btn-danger" id="price">가격순정렬</button>
+      <button class="btn btn-danger" id="name">상품명 정렬</button>
+      <button class="btn btn-danger" id="sample">6만원 이하 상품만 보기</button>
+    </div>
 
+    <script>
       // document.querySelectorAll(".card-body h5")[0].innerHTML =
       //   products[0].title;
       // document.querySelectorAll(".card-body p")[0].innerHTML =
@@ -107,13 +108,99 @@
       //     console.log(error);
       //   });
 
-      products.forEach((a, i) => {
-        var 템플릿 = `<div class="col-sm4">
+      var products = [
+        { id: 0, price: 70000, title: "Blossom Dress" },
+        { id: 1, price: 50000, title: "Springfield Shirt" },
+        { id: 2, price: 60000, title: "Black Monastery" },
+      ];
+
+      var count = 0;
+
+      $("#more").click(function () {
+        count++;
+
+        if (count === 1) {
+          $.get("https://codingapple1.github.io/js/more1.json").done((data) => {
+            data.forEach((a, i) => {
+              var 템플릿 = `<div class="col-sm-4">
           <img src="https://via.placeholder.com/600" class="w-100">
-          <h5>${products[i].title}</h5>
-          <p>가격 : ${products[i].price}</p>
+          <h5>${data[i].title}</h5>
+          <p>가격 : ${data[i].price}</p>
+        </div>`;
+              $(".row").append(템플릿);
+            });
+          });
+        }
+
+        if (count === 2) {
+          $.get("https://codingapple1.github.io/js/more2.json").done((data) => {
+            data.forEach((a, i) => {
+              var 템플릿 = `<div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100">
+          <h5>${data[i].title}</h5>
+          <p>가격 : ${data[i].price}</p>
+        </div>`;
+              $(".row").append(템플릿);
+            });
+          });
+        }
+      });
+
+      // 가격순 정렬
+      $("#price").click(function () {
+        products.sort(function (a, b) {
+          return a.price - b.price;
+        });
+
+        $(".row").html("");
+
+        products.forEach((a, i) => {
+          var 템플릿 = `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${products[i].title}</h5>
+            <p>가격 : ${products[i].price}</p>
+            </div>`;
+          $(".row").append(템플릿);
+        });
+      });
+
+      $("#name").click(function () {
+        products.sort(function (a, b) {
+          if (a.title < b.title) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+
+        $(".row").html("");
+
+        products.forEach((a, i) => {
+          var 템플릿 = `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${products[i].title}</h5>
+            <p>가격 : ${products[i].price}</p>
+            </div>`;
+          $(".row").append(템플릿);
+        });
+      });
+
+      var newProducts = [];
+
+      $("#sample").click(function () {
+        newProducts = products.filter(function (a) {
+          return a.price <= 60000;
+        });
+
+        $(".row").html("");
+        newProducts.forEach((a, i) => {
+          var 템플릿 = `<div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100">
+          <h5>${a.title}</h5>
+          <p>가격 : ${a.price}</p>
           </div>`;
-        $(".row").append(템플릿);
+          $(".row").append(템플릿);
+        });
       });
     </script>
   </body>
