@@ -53,19 +53,19 @@
     </div> -->
 
     <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <img src="https://via.placeholder.com/600" class="w-100" />
-          <h5>Card title</h5>
-          <p>가격 : 70000</p>
-        </div>
-      </div>
+      <div class="row"></div>
     </div>
 
-    <div aria-rowspan="4">
+    <div class="container my-3">
       <button class="btn btn-danger" id="more">더보기</button>
+    </div>
+    <div class="container my-3">
       <button class="btn btn-danger" id="price">가격순정렬</button>
+    </div>
+    <div class="container my-3">
       <button class="btn btn-danger" id="name">상품명 정렬</button>
+    </div>
+    <div class="container my-3">
       <button class="btn btn-danger" id="sample">6만원 이하 상품만 보기</button>
     </div>
 
@@ -114,11 +114,22 @@
         { id: 2, price: 60000, title: "Black Monastery" },
       ];
 
+      // 기본 화면
+      products.forEach((a, i) => {
+        var 템플릿 = `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100">
+            <h5>${products[i].title}</h5>
+            <p>가격 : ${products[i].price}</p>
+            <button class="buy_btn">구매</button>
+            </div>`;
+        $(".row").append(템플릿);
+      });
+
+      // 더보기
       var count = 0;
 
       $("#more").click(function () {
         count++;
-
         if (count === 1) {
           $.get("https://codingapple1.github.io/js/more1.json").done((data) => {
             data.forEach((a, i) => {
@@ -139,7 +150,7 @@
           <img src="https://via.placeholder.com/600" class="w-100">
           <h5>${data[i].title}</h5>
           <p>가격 : ${data[i].price}</p>
-        </div>`;
+          </div>`;
               $(".row").append(템플릿);
             });
           });
@@ -151,19 +162,19 @@
         products.sort(function (a, b) {
           return a.price - b.price;
         });
-
         $(".row").html("");
-
         products.forEach((a, i) => {
           var 템플릿 = `<div class="col-sm-4">
             <img src="https://via.placeholder.com/600" class="w-100">
             <h5>${products[i].title}</h5>
             <p>가격 : ${products[i].price}</p>
+
             </div>`;
           $(".row").append(템플릿);
         });
       });
 
+      // 이름순 정렬
       $("#name").click(function () {
         products.sort(function (a, b) {
           if (a.title < b.title) {
@@ -172,9 +183,7 @@
             return -1;
           }
         });
-
         $(".row").html("");
-
         products.forEach((a, i) => {
           var 템플릿 = `<div class="col-sm-4">
             <img src="https://via.placeholder.com/600" class="w-100">
@@ -185,13 +194,12 @@
         });
       });
 
+      // 6만원 이하 상품만 보기
       var newProducts = [];
-
       $("#sample").click(function () {
         newProducts = products.filter(function (a) {
           return a.price <= 60000;
         });
-
         $(".row").html("");
         newProducts.forEach((a, i) => {
           var 템플릿 = `<div class="col-sm-4">
@@ -200,6 +208,20 @@
           <p>가격 : ${a.price}</p>
           </div>`;
           $(".row").append(템플릿);
+        });
+      });
+
+      // 장바구니 localstoreage에 구현
+      var card_btns = document.querySelectorAll(".buy_btn");
+      const cartTitle = [];
+
+      card_btns.forEach(function (button) {
+        button.addEventListener("click", function () {
+          var parent = button.parentNode;
+          var productsTitle = parent.querySelector("h5");
+          cartTitle.push(productsTitle.textContent);
+          const newCartTitleJson = JSON.stringify(cartTitle);
+          localStorage.setItem("cart", newCartTitleJson);
         });
       });
     </script>
